@@ -4,65 +4,61 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
      <title>jQuery Mobile</title>
      <link rel="stylesheet"  href="css/jquery/jquery.mobile-1.3.2.min.css">
+     <link rel="stylesheet"  href="css/jquery/jquery.ui.datepicker.mobile.css">
      <link rel="stylesheet"  href="css/phone.css">
      <link rel="stylesheet"  href="css/app.css">
      <script src="js/data_spoof.js"></script>
      <script src="js/jquery/jquery.js"></script>
      <script src="js/jquery/jquery.mobile-1.3.2.min.js"></script>
+     <script src="js/jquery/jquery.ui.datepicker.js"></script>
+     <script src="js/jquery/jquery.ui.datepicker.mobile.js"></script>
      <script src="js/app.js"></script>
   </head>
   <body>
-    <div id="wrapper">
-      <div data-role="page">
-        <div data-role="header" >
-          <h1>Home</h1>
-        </div>
-
-        <div data-role="content">
-          <ul data-role="listview">
-            <li data-role="list-divider">Usage</li>
-            <li>
-              <h4>Last 15 minutes: <span class="current15" id="current15">xx</span> </h4>
-              <p>Yesterday (same time): <span class="past15" id="past15">xx</span> </p>
-            </li>
-            <li>
-              <h4>Total today: <span class="currentTotal" id="currentTotal">xx</span> </h4>
-              <p>Total yesterday: <span class="pastTotal" id="pastTotal">xx</span> </p>
-            </li>
-            <li data-role="list-divider">Notifications</li>
-          </ul>
-
-        </div>
-        <div class="scrollable" style="height:440px;">
-          <ul data-role="listview" data-inset="true">
-            <li class="swipekill">It's a refreshing 265&deg;C outside, opening a window will reduce the amount of electricity spent on temperature control. </li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-            <li class="swipekill">Test</li>
-          </ul>
-        </div>
-
-        <!-- footer and todos -->
-        <div class="footerwrapper">
-          <ul data-role="listview">
-            <li data-role="list-divider">Tip</li>
-            <li class="tip">Tip of the day...</li>
-          </ul>
-
-          <div data-role="footer">
-            <h3>Footer</h3>
-          </div>
-        </div>
-
+    <div data-role="page">
+      <div data-role="header" >
+        <h1>Home</h1>
       </div>
+      <div data-role="content">
+        <ul data-role="listview">
+          <li data-role="list-divider">Usage</li>
+          <li>
+          <!--label for="date">Poop:</label>
+          <input type="date" name="date" id="date" value="" /-->
+            <h4>Last 15 minutes: <span class="current15" id="current15">xx</span> </h4>
+            <p>Yesterday (same time): <span class="past15" id="past15">xx</span> </p>
+          </li>
+          <li>
+            <h4>Total today: <span class="currentTotal" id="currentTotal">xx</span> </h4>
+            <p>Total yesterday: <span class="pastTotal" id="pastTotal">xx</span> </p>
+          </li>
+          <li data-role="list-divider">Notifications</li>
+        </ul>
+      </div>
+      <div class="scrollable notifications">
+        <ul data-role="listview" data-inset="true">
+          <li class="swipekill">It's a refreshing 265&deg;C outside, opening a window will reduce the amount of electricity spent on temperature control. </li>
+          <li class="swipekill">Test</li>
+          <li class="swipekill">Test</li>
+          <li class="swipekill">Test</li>
+          <li class="swipekill">Test</li>
+          <li class="swipekill">Test</li>
+          <li class="swipekill">Test</li>
+        </ul>
+      </div>
+
+      <!-- footer and todos -->
+      <div class="footerwrapper">
+        <ul data-role="listview">
+          <li data-role="list-divider">Tip</li>
+          <li class="tip">Tip of the day...</li>
+        </ul>
+
+        <div data-role="footer">
+          <h3>Footer</h3>
+        </div>
+      </div>
+
     </div>
   </body>
 </html>

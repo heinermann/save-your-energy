@@ -5,23 +5,25 @@
 
 body {
   background:#999;
-  padding:20px 0;
+  padding:0;
 }
 
 #wrapper {
-  position:relative;
-  overflow: none;
-  width:480px;
-  height:800px;
-  margin:0 auto;
-  border:0 solid #000;
-  border-width:40px 4px;
-  border-radius:20px;
+}
+
+.notifications {
+  height:340px;
 }
 
 .ui-mobile [data-role=page] {
-  position:inherit;
-  height:100%;
+  position:relative;
+  overflow: none;
+  width:480px;
+  height:720px;
+  margin:0 auto;
+  border:0 solid #000;
+  border-width:3px 9px;
+  border-radius:20px;
 }
 
 .footerwrapper {
