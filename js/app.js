@@ -14,14 +14,17 @@ $(function(){
       complete = function() { $(this).remove() } );
   }
 
-  // Swipe handlers to remove entries
-  $(".swipekillctrl > li").on("swiperight", function(evt){
-    swipeRemove($(evt.target), 1);
-  });
+  function registerSwipeKill(element) {
+    element.on("swiperight", function(evt){
+      swipeRemove($(evt.target), 1);
+    });
 
-  $(".swipekillctrl > li").on("swipeleft", function(evt){
-    swipeRemove($(evt.target), -1);
-  });
+    element.on("swipeleft", function(evt){
+      swipeRemove($(evt.target), -1);
+    });
+
+  }
+  registerSwipeKill($(".swipekillctrl > li"));
 
   setInterval(function(){ 
     var tip = $(".tip");
@@ -87,16 +90,19 @@ $(function(){
      offHours.popup();
      
      if (e.keyCode == hKey) {
-       notificationList.prepend("<li>Turn off unnecessary devices if you will be away from home.</li>").listview("refresh");
+       var elem = notificationList.prepend("<li>Turn off unnecessary devices if you will be away from home.</li>").listview("refresh");
        leavingHome.popup("open");
+       registerSwipeKill(elem);
      }
      else if (e.keyCode == jKey) {
-       notificationList.prepend("<li>Peak hours begin soon at the rate of <span style=\"font-family:monospace\">$0.12/kWh</span>. Turning off unnecessary devices is advised.</li>").listview("refresh");
+       elem = notificationList.prepend("<li>Peak hours begin soon at the rate of <span style=\"font-family:monospace\">$0.12/kWh</span>. Turning off unnecessary devices is advised.</li>").listview("refresh");
        peakHours.popup("open");
+       registerSwipeKill(elem);
      }
      else if (e.keyCode == kKey) {
-       notificationList.prepend("<li>Off hours begin soon at the rate of <span style=\"font-family:monospace\">$0.02/kWh</span>. Using necessary high power devices at this time is advised.</li>").listview("refresh");
+       elem = notificationList.prepend("<li>Off hours begin soon at the rate of <span style=\"font-family:monospace\">$0.02/kWh</span>. Using necessary high power devices at this time is advised.</li>").listview("refresh");
        offHours.popup("open");
+       registerSwipeKill(elem);
      }
      
   });
