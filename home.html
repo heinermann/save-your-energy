@@ -16,27 +16,25 @@
      <script src="js/app.js"></script>
   </head>
   <body>
-    <div data-role="page">
+    <div data-role="page" id="home-page">
       <div data-role="header" >
         <h1>Home</h1>
       </div>
-
       <div data-role="content">
         <ul data-role="listview">
           <li data-role="list-divider">Usage</li>
           <li>
           <!--label for="date">Poop:</label>
           <input type="date" name="date" id="date" value="" /-->
-            <h4>Last 15 minutes: <span class="current15">xx</span> </h4>
-            <p>Yesterday (same time): <span class="past15">xx</span> </p>
+            <h4>Last 15 minutes: <span class="current15" id="current15">xx</span> </h4>
+            <p>Yesterday (same time): <span class="past15" id="past15">xx</span> </p>
           </li>
           <li>
-            <h4>Total today: <span class="currentTotal">xx</span> </h4>
-            <p>Total yesterday: <span class="pastTotal">xx</span> </p>
+            <h4>Total today: <span class="currentTotal" id="currentTotal">xx</span> </h4>
+            <p>Total yesterday: <span class="pastTotal" id="pastTotal">xx</span> </p>
           </li>
           <li data-role="list-divider">Notifications</li>
         </ul>
-
       </div>
       <div class="scrollable notifications">
         <ul data-role="listview" data-inset="true">
@@ -62,6 +60,30 @@
         </div>
       </div>
 
+      <div data-role="popup" id="leaving-home-dialog" data-transition="slidedown" data-dismissible="false">
+        <div data-role="header"><h1 class="ui-title">High Power Usage</h1></div>
+        <div data-role="content">
+          <h4 style="padding:1em 0;">Turn off unnecessary devices if you will be away from home.</h4>
+          <p><a href="#home-page" data-role="button">Dismiss</a></p>
+        </div>
+      </div>
+      
+      <div data-role="popup" id="peak-hours-dialog" data-transition="slidedown" data-dismissible="false">
+        <div data-role="header"><h1 class="ui-title">High Power Usage</h1></div>
+        <div data-role="content">
+          <h4 style="padding:1em 0;">Peak hours begin soon at the rate of <span style="font-family:monospace">$0.12/kWh</span>. Turning off unnecessary devices is advised.</h4>
+          <p><a href="#home-page" data-role="button">Dismiss</a></p>
+        </div>
+      </div>
+      
+      <div data-role="popup" id="off-hours-dialog" data-transition="slidedown" data-dismissible="false">
+        <div data-role="header"><h1 class="ui-title">Low Power Usage</h1></div>
+        <div data-role="content">
+          <h4 style="padding:1em 0;">Off hours begin soon at the rate of <span style="font-family:monospace">$0.02/kWh</span>. Using necessary high power devices at this time is advised.</h4>
+          <p><a href="#home-page" data-role="button">Dismiss</a></p>
+        </div>
+      </div>
+      
     </div>
   </body>
 </html>
