@@ -18,4 +18,31 @@ body {
   stroke-width: 1.5px;
 }
 
+#graph-placeholder {
+  margin-top:8px;
+}
 
+#graph-legend {
+}
+
+#graph-legend ul {
+  list-style:none;
+  padding-right:10px;
+}
+
+#graph-legend .colour {
+  width:8px;
+  height:8px;
+  border:1px solid #000;
+  margin-right:5px;
+  float:left;
+}
+
+#graph-legend .primary .colour {
+  background-color:#000;
+}
+
+#graph-legend li {
+  float:right;
+  margin-left:10px;
+}
