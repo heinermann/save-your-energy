@@ -4,7 +4,7 @@
 * Dual licensed under the MIT or GPL Version 2 licenses.
 * http://jquery.org/license
 */
-(function($, undefined ) {
+$(function() {
 
 	//cache previous datepicker ui method
 	var prevDp = $.fn.datepicker;
@@ -47,9 +47,9 @@
 	};
 		
 	//bind to pagecreate to automatically enhance date inputs	
-	$( ".ui-page" ).live( "pagecreate", function(){		
+	/*$( ".ui-page" ).live( "pagecreate", function(){		
 		$( "input[type='date'], input:jqmData(type='date')" ).each(function(){
 			$(this).after( $( "<div />" ).datepicker({ altField: "#" + $(this).attr( "id" ), showOtherMonths: true }) );
 		});	
-	});
-})( jQuery );
+	});*/
+});
