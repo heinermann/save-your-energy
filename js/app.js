@@ -70,16 +70,27 @@ $(function(){
   Electric.start(5000);
   
   
-  var notificationList = $("#notification-list");
+  function addNotification(str,hasPopup) {
+    if ( typeof hasPopup == 'undefined' )
+      hasPopup = false;
+
+    var notificationList = $("#notification-list");
+    var elem = notificationList.prepend("<li>"+str+"</li>").listview("refresh");
+    if ( hasPopup ) {
+      $(".popupstr").html(str);
+      $("#general-dialog").popup("open");
+    }
+
+    registerSwipeKill(elem);
+  }
   
   // fake push notifications
   $(document).keypress(function (e) {
-     
      var hKey = 104;
      var jKey = 106;
      var kKey = 107;
      var lKey = 108;
-     
+    /* 
      var leavingHome = $("#leaving-home-dialog");
      leavingHome.popup();
      
@@ -88,28 +99,22 @@ $(function(){
      
      var offHours = $("#off-hours-dialog");
      offHours.popup();
-     
+    */ 
      if (e.keyCode == hKey) {
-       var elem = notificationList.prepend("<li>Turn off unnecessary devices if you will be away from home.</li>").listview("refresh");
-       leavingHome.popup("open");
-       registerSwipeKill(elem);
+       addNotification("Turn off unnecessary devices if you will be away from home.", true);
      }
      else if (e.keyCode == jKey) {
-       elem = notificationList.prepend("<li>Peak hours begin soon at the rate of <span style=\"font-family:monospace\">$0.12/kWh</span>. Turning off unnecessary devices is advised.</li>").listview("refresh");
-       peakHours.popup("open");
-       registerSwipeKill(elem);
+       addNotification("Peak hours begin soon at the rate of <span style=\"font-family:monospace\">$0.12/kWh</span>. Turning off unnecessary devices is advised.", true);
      }
      else if (e.keyCode == kKey) {
-       elem = notificationList.prepend("<li>Off hours begin soon at the rate of <span style=\"font-family:monospace\">$0.02/kWh</span>. Using necessary high power devices at this time is advised.</li>").listview("refresh");
-       offHours.popup("open");
-       registerSwipeKill(elem);
+       addNotification("Off hours begin soon at the rate of <span style=\"font-family:monospace\">$0.02/kWh</span>. Using necessary high power devices at this time is advised.", true);
      }
      else if (e.keyCode == lKey) {
        var r = Math.round(randomInRange(0,3));
-       if (r == 0) notificationList.prepend("<li>Temperature today is 4&deg;C. Heating recommended.</li>").listview("refresh"); 
-       else if (r == 1) notificationList.prepend("<li>Temperature today is 34&deg;C. Air conditioning recommended.</li>").listview("refresh");
-       else if (r == 2) notificationList.prepend("<li>Temperature today is 22&deg;C. No air conditioning and open windows recommended.</li>").listview("refresh");
-       else if (r == 3) notificationList.prepend("<li>Temperature today is 12&deg;C. No heating and extra clothing is recommended.</li>").listview("refresh");
+       if (r == 0) addNotification("Temperature today is 4&deg;C. Heating recommended."); 
+       else if (r == 1) addNotification("Temperature today is 34&deg;C. Air conditioning recommended.");
+       else if (r == 2) addNotification("Temperature today is 22&deg;C. No air conditioning and open windows recommended.");
+       else if (r == 3) addNotification("Temperature today is 12&deg;C. No heating and extra clothing is recommended.");
      }
      
   });
