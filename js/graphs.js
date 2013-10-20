@@ -1,12 +1,13 @@
 function get_random_color() {
-    return "#" + (Math.round(Math.random() * 0XFFFFFF)).toString(16);
+    return "#" + (Math.round(Math.random() * 0XFFFFFF)&0x7F7F7F).toString(16);
 }
 
 function get_random_number(b, t) {
   return Math.floor(Math.random() * (1 + t - b)) + b;
 }
 
-function get_y_value (obj, displayValue) {
+var displayValue = true;
+function get_y_value (obj) {
   if (displayValue == true) {
     return obj.value;
   }
@@ -47,8 +48,6 @@ function refresh () {
       .text("Watt-hour(Wh)");
 }
 
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 600 - margin.left - margin.right,
     height = 200 - margin.top - margin.bottom;
@@ -68,11 +67,9 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var displayValue = true;
-
 var line = d3.svg.line()
     .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
-    .y(function(d) { return y(get_y_value(d, displayValue)); });
+    .y(function(d) { return y(get_y_value(d)); });
 
 var svg = d3.select("#graph-placeholder").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -98,142 +95,83 @@ d3.json("HackWE-BigData.json", function(error, data) {
 
   // A 'day' block contains 96 points
   // A 'week' block should have 7 points
-  // A 'month' block should have 28/30/31 points
+  // A 'month' block should have 28/29/30/31 points
   // A 'year' block should have 12 points
 
   // Colors 
-  var daycolor = "black";
-  var weekcolor = "black";
-  var monthcolor = "black";
-  var yearcolor = "black";
+  var timeInterval = 0;
 
+  function updateGraph() {
+    var blockTemp = [];
+    var randBlockData = [];
+    var n = get_random_number(timeInterval, 414-timeInterval-1);
+    for(var k = 0; k < timeInterval ; k++) {
+      var summObj = { "cost":0, "value":0, 
+        "timePeriod":{"start": block[k].interval.start, "duration": block[k].interval.duration } };
+      var randObj = { "cost":0, "value":0, 
+        "timePeriod":{"start": block[n+k].interval.start, "duration": block[n+k].interval.duration } };
+
+      for ( var j = 0; j < block[k].IntervalReading.length; ++j ){
+        if ( timeInterval == 1 ) {
+          blockTemp.push(block[k].IntervalReading[j]);
+          randBlockData.push(block[n+k].IntervalReading[j]);
+        }
+        else {
+          summObj.cost += parseInt(block[k].IntervalReading[j].cost);
+          summObj.value += parseInt(block[k].IntervalReading[j].value);
+          randObj.cost += parseInt(block[n+k].IntervalReading[j].cost);
+          randObj.value += parseInt(block[n+k].IntervalReading[j].value);
+        }
+
+      }
+      if ( timeInterval > 1 ) {
+        blockTemp.push(summObj);
+        randBlockData.push(block[n+k].IntervalReading[0]);
+      }
+    }
+
+    x.domain(d3.extent(blockTemp, function(d) { return new Date(d.timePeriod.start * 1000); }));
+    y.domain(d3.extent(blockTemp, function(d) { return parseInt(get_y_value(d)); }));
+    refresh();
+
+    var line = d3.svg.line()
+        .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
+        .y(function(d) { return y(get_y_value(d)); });
+
+    addPath(blockTemp, line, 'black');
+
+    x.domain(d3.extent(randBlockData, function(d) { return new Date(d.timePeriod.start * 1000); }));
+    y.domain(d3.extent(randBlockData, function(d) { return parseInt(get_y_value(d));}));
+
+    // Pick 7 days
+    var color2 = get_random_color();
+    addPath(randBlockData, line, color2);
+    // update legend
+    colourLegend.find(".secondary .colour").css("background", color2);
+  }
 
   $('#value-radio').change('change', function(){
     if ($(this).is(':checked')) {
       displayValue = true;
+      updateGraph();
     }
   });
 
   $('#cost-radio').change('change', function(){
     if ($(this).is(':checked')) {
       displayValue = false;
+      updateGraph();
     }
   });
 
-  $('#day-radio').change('change', function(){
-    if ($(this).is(':checked')){
-      x.domain(d3.extent(block[0].IntervalReading, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(block[0].IntervalReading, function(d) { return parseInt(get_y_value(d, displayValue)); }));
-      refresh();
-
-      // Assume today is the first block
-      var todays_data = block[0].IntervalReading;
-      addPath(todays_data, line, daycolor);
-
-      // Add random data
-      var color2 = get_random_color();
-      var random_data = block[get_random_number(0, 413)].IntervalReading;
-      x.domain(d3.extent(random_data, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(random_data, function(d) { return parseInt(get_y_value(d, displayValue)); }));
-      addPath(random_data, line, color2);
-      // update legend
-      colourLegend.find(".secondary .colour").css("background", color2);
+  $('.time-interval-radio').change('change', function(){
+    if ( $(this).is(':checked') ) {
+      timeInterval = parseInt($(this).data("interval"));
+      updateGraph();
     }
   });
-  
+
   // trigger day graph
   $('#day-radio').trigger('change');
-
-  $('#week-radio').change('change', function(){
-    if ($(this).is(':checked')){
-      var blockWeek = [];
-      var randBlockWeek = [];
-      var n = get_random_number(8, 414-8);
-      for(var k = 0; k < 7 ; k++) {
-        blockWeek.push(block[k].IntervalReading[0]);
-        randBlockWeek.push(block[n+k].IntervalReading[0]);
-      }
-      x.domain(d3.extent(blockWeek, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(blockWeek, function(d) { return parseInt(get_y_value(d, displayValue)); }));
-      refresh();
-      var lineWeek = d3.svg.line()
-        .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
-        .y(function(d) { return y(get_y_value(d, displayValue)); });
-
-      // Pick 7 days
-      addPath(blockWeek, lineWeek, weekcolor);
-
-      x.domain(d3.extent(randBlockWeek, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(randBlockWeek, function(d) { return parseInt(get_y_value(d, displayValue));}));
-
-      // Pick 7 days
-      var color2 = get_random_color();
-      addPath(randBlockWeek, lineWeek, color2);
-      // update legend
-      colourLegend.find(".secondary .colour").css("background", color2);
-    }
-  });
-
-  $('#month-radio').change('change', function(){
-    if ($(this).is(':checked')){
-      var blockMonth = [];
-      var randBlockMonth = [];
-      var n = get_random_number(31, 414-31);
-      for(var k = 0; k < 31 ; k++) {
-        blockMonth.push(block[k].IntervalReading[0]);
-        randBlockMonth.push(block[n+k].IntervalReading[0]);
-      }
-      x.domain(d3.extent(blockMonth, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(blockMonth, function(d) { return parseInt(get_y_value(d, displayValue)); }));
-      refresh();
-
-      var lineWeek = d3.svg.line()
-        .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
-        .y(function(d) { return y(get_y_value(d, displayValue)); });
-
-      // Pick 7 days
-      addPath(blockMonth, lineWeek, monthcolor);
-
-      x.domain(d3.extent(randBlockMonth, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(randBlockMonth, function(d) { return parseInt(get_y_value(d, displayValue)); }));
-
-      // Pick 7 days
-      var color2 = get_random_color();
-      addPath(randBlockMonth, lineWeek, color2);
-      // update legend
-      colourLegend.find(".secondary .colour").css("background", color2);
-    }
-  });
-
-  $('#year-radio').change('change', function(){
-    if ($(this).is(':checked')){
-      var blockYear = [];
-      var randBlockYear = [];
-      var n = get_random_number(12, 414-12);
-      for(var k = 0; k < 12; k++) {
-        blockYear.push(block[k].IntervalReading[0]);
-        randBlockYear.push(block[n+k].IntervalReading[0]);
-      }
-      x.domain(d3.extent(blockYear, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(blockYear, function(d) { return parseInt(get_y_value(d, displayValue)); }));
-      refresh();
-
-      var lineWeek = d3.svg.line()
-        .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
-        .y(function(d) { return y(get_y_value(d, displayValue)); });
-
-      // Pick 7 days
-      addPath(blockYear, lineWeek, yearcolor);
-
-      x.domain(d3.extent(randBlockYear, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(randBlockYear, function(d) { return parseInt(get_y_value(d, displayValue)); }));
-
-      // Pick 7 days
-      var color2 = get_random_color();
-      addPath(randBlockYear, lineWeek, color2);
-      // update legend
-      colourLegend.find(".secondary .colour").css("background", color2);
-    }
-  });
 });
 

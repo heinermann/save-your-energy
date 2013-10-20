@@ -29,7 +29,6 @@
       <div data-role="content">
       
         
-        
 
         <div id="graph-placeholder">
           <script src="js/graphs.js"></script>
@@ -49,13 +48,13 @@
             <div data-role="fieldcontain">
               <fieldset id="time-intervals" data-role="controlgroup" data-type="horizontal">
                 <legend>Time Interval</legend>
-                <input type="radio" name="button-radio" id="day-radio" checked="checked"/>
+                <input type="radio" name="button-radio" id="day-radio" data-interval="1" class="time-interval-radio" checked="checked"/>
                 <label for="day-radio">Day</label>
-                <input type="radio" name="button-radio" id="week-radio"/>
+                <input type="radio" name="button-radio" id="week-radio" data-interval="7" class="time-interval-radio" />
                 <label for="week-radio">Week</label>
-                <input type="radio" name="button-radio" id="month-radio"/>
+                <input type="radio" name="button-radio" id="month-radio" data-interval="31" class="time-interval-radio" />
                 <label for="month-radio">Month</label>
-                <input type="radio" name="button-radio" id="year-radio"/>
+                <input type="radio" name="button-radio" id="year-radio" data-interval="12" class="time-interval-radio" />
                 <label for="year-radio">Year</label>
               </fieldset>
             </div>
