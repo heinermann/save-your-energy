@@ -56,13 +56,13 @@ $(function(){
     Electric.observe(function (u) {
     
       var currentCost = Electric.costToDollars(u.cost);
-      var pastCost = currentCost + randomInRange(-0.5, 0.5); // spoofed
-      var delta = currentCost - pastCost;
+      var pastCost = currentCost*randomInRange(0.8, 1.2); // spoofed
+      var delta = pastCost - currentCost;
       totalToday += currentCost;
       
-      currentTotal.text("$" + totalToday.toFixed(2));
-      current15.text("$" + currentCost.toFixed(2));
-      past15.text("$" + pastCost.toFixed(2) + ", $" + delta.toFixed(2));
+      currentTotal.text(formatDollars(totalToday));
+      current15.text(formatDollars(currentCost));
+      past15.text(formatDollars(pastCost) + ", " + formatDollars(delta, true));
       
     });
   }
@@ -169,3 +169,18 @@ $(function(){
   */
   
 });
+
+
+function formatDollars(dollars, includePlus) {
+  var abs = Math.abs(dollars);
+  if (dollars < 0) {
+    return "-$" + abs.toFixed(2);
+  }
+  else if (includePlus) {
+    return "+$" + abs.toFixed(2);
+  }
+  else {
+    return "$" + abs.toFixed(2);
+  }
+}
+
