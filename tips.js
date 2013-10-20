@@ -1,4 +1,4 @@
-[ "Your body regulates its own temperature.",
+var tipsarr = [ "Your body regulates its own temperature.",
   "Keeping the temperature 'just right' all the time is a factor of weight gain.",
   "Room temperature is 21&deg;C (70&deg;F).",
   "The maximum comfortable room temperature is 24&deg;C (75&deg;F).",
@@ -6,7 +6,7 @@
   "The recommended sleeping temperature is slightly below room temperature.", 
   "Temperature too low or too high can prevent you from sleeping well.",
   "If your water heater temperature is above 66&deg;C, you pay $20 more per person than if it were set to 54&deg;C.",
-  "Using a toaster oven for small meals costs half as much as using a conventional oven.",
+  "Using a toaster oven for small meals costs less than half as much as using a conventional oven.",
   "Your water heater can cost over $100 per year.",
   "Reducing the temperature of your water heater by 8&deg;C can save up to $20 per year.",
   "Insulating the water heater can prevent heat from escaping and reduce costs.",
@@ -15,8 +15,6 @@
   "If you want to heat your home, open the blinds and curtains where the sun is shining.",
   "If you want to cool your home, close the blinds and curtains where the sun is shining.",
   "All the small savings really do add up.",
-  "Appliances that are off still draw power(standby power), costing up to 10% of your electric bill.",
-
-
-]
+  "Appliances that are off still draw power(standby power), costing up to 10% of your electric bill."
+];
 
