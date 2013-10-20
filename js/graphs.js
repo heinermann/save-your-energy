@@ -78,6 +78,12 @@ d3.json("HackWE-BigData.json", function(error, data) {
   // A 'month' block should have 28/30/31 points
   // A 'year' block should have 12 points
 
+  // Colors 
+  var daycolor = "black";
+  var weekcolor = "black";
+  var monthcolor = "black";
+  var yearcolor = "black";
+
   $('#day-radio').change('change', function(){
     if ($(this).is(':checked')){
       x.domain(d3.extent(block[0].IntervalReading, function(d) { return new Date(d.timePeriod.start * 1000); }));
@@ -86,12 +92,11 @@ d3.json("HackWE-BigData.json", function(error, data) {
 
       // Assume today is the first block
       var todays_data = block[0].IntervalReading;
-      var color = get_random_color();
       svg.append("path")
           .datum(todays_data)
           .attr("class", "line")
           .attr("d", line)
-          .attr("stroke", color);
+          .attr("stroke", daycolor);
 
       // Add random data
       var color2 = get_random_color();
@@ -123,16 +128,14 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .y(function(d) { return y(d.value); });
 
       // Pick 7 days
-      var color = get_random_color();
       svg.append("path")
         .datum(blockWeek)
         .attr("class", "line")
         .attr("d", lineWeek)
-        .attr("stroke", color);
+        .attr("stroke", weekcolor);
 
       x.domain(d3.extent(randBlockWeek, function(d) { return new Date(d.timePeriod.start * 1000); }));
       y.domain(d3.extent(randBlockWeek, function(d) { return parseInt(d.value); }));
-
 
       // Pick 7 days
       var color2 = get_random_color();
@@ -162,12 +165,11 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .y(function(d) { return y(d.value); });
 
       // Pick 7 days
-      var color = get_random_color();
       svg.append("path")
         .datum(blockMonth)
         .attr("class", "line")
         .attr("d", lineWeek)
-        .attr("stroke", color);
+        .attr("stroke", monthcolor);
 
       x.domain(d3.extent(randBlockMonth, function(d) { return new Date(d.timePeriod.start * 1000); }));
       y.domain(d3.extent(randBlockMonth, function(d) { return parseInt(d.value); }));
@@ -200,12 +202,11 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .y(function(d) { return y(d.value); });
 
       // Pick 7 days
-      var color = get_random_color();
       svg.append("path")
         .datum(blockYear)
         .attr("class", "line")
         .attr("d", lineWeek)
-        .attr("stroke", color);
+        .attr("stroke", yearcolor);
 
       x.domain(d3.extent(randBlockYear, function(d) { return new Date(d.timePeriod.start * 1000); }));
       y.domain(d3.extent(randBlockYear, function(d) { return parseInt(d.value); }));
@@ -217,7 +218,6 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .attr("class", "line")
         .attr("d", lineWeek)
         .attr("stroke", color2);
-
     }
   });
 
