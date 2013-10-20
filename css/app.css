@@ -42,3 +42,21 @@
 #intro img {
   width:400px;
 }
+
+#notification-list .ui-li-icon  {
+  max-height: 32px;
+  max-width: 32px;
+}
+
+#notification-list .ui-li-has-icon {
+  padding-left:54px;
+  min-height:34px;
+}
+
+#notification-list li {
+  font-weight:100;
+}
+
+#tips li {
+  font-weight:100;
+}
