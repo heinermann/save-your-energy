@@ -173,10 +173,10 @@ var Electric = (function (m) {
   var timer;
   var observers = [];
   var usageConf = {
-    maxWHVariance: 5000.0,
-    maxWH: 50000.0,
-    minWH: 0.0,
-    rates: [10.0, 20.0, 40.0],
+    maxWHVariance: 1000.0,
+    maxWH: 20000.0,
+    minWH: 500.0,
+    rates: [2, 6, 12],
     duration: 900,
     durationsPerRate: 16,
     start: 1330578000

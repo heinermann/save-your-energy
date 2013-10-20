@@ -36,19 +36,24 @@
       </div>
       <div class="scrollable notifications">
         <ul class="swipekillctrl" data-role="listview" data-inset="true" id="notification-list">
-          <li>It's a refreshing 265&deg;C outside, opening a window will reduce the amount of electricity spent on temperature control. </li>
         </ul>
       </div>
 
       <!-- footer and todos -->
-      <div class="footerwrapper">
+      <div class="footerwrapper" id="tips">
         <ul data-role="listview">
           <li data-role="list-divider">Did you know...</li>
-          <li class="tip">Tip of the day...</li>
+          <li class="tip">All the small savings really do add up.</li>
         </ul>
 
         <div data-role="footer">
-          <h3>Footer</h3>
+          <div data-role="navbar">
+            <ul>
+              <li><a href="#" data-icon="grid">Rate Schedule</a></li>
+              <li><a href="#promotion-page" data-icon="star">Promotions</a></li>
+              <li><a href="graphs.html" data-icon="grid">Usage Log</a></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -108,5 +113,52 @@
         </div>
       </div>
     </div>
+
+    <div data-role="page" id="promotion-page">
+      <div data-role="header">
+        <h1>Promotions</h1>
+      </div>
+      <div data-role="content">
+        <ul data-role="listview">
+          <li>
+            <img src="image/chip-icon.png" class="ui-li-icon">
+            <h4>10% off select items at Advanced Software Inc.</h4>
+            <p>End this week with a total electrical cost less than last week.</p>
+          </li>
+          <li>
+            <img src="image/food1-icon.png" class="ui-li-icon">
+            <h4>25% off for your friend or partner at Good Eatin' Grill.</h4>
+            <p>Maintain a less than 2000 Watt-hour usage during all peak times today.</p>
+          </li>
+          <li>
+            <img src="image/food2-icon.png" class="ui-li-icon">
+            <h4>Free extra side at Sid's Super Steakhouse.</h4>
+            <p>Maintain a cost of less than $10.00 for at least three days this week.</p>
+          </li>
+          <li>
+            <img src="image/jeans-icon.png" class="ui-li-icon">
+            <h4>5% off designer jeans at Jane's Fancy Pants.</h4>
+            <p>End this week with a total kWh consumption less than last week.</p>
+          </li>
+          <li>
+            <img src="image/internet-icon.png" class="ui-li-icon">
+            <h4>First month free with Ingenious Internet Inc.</h4>
+            <p>Maintain a total cost of less than the average for your area this week.</p>
+          </li>
+        </ul>
+      </div>
+      
+      <div data-role="footer" style="margin-top:222px;">
+          <div data-role="navbar">
+            <ul>
+              <li><a href="#" data-icon="grid">Rate Schedule</a></li>
+              <li><a href="#home-page" data-icon="home">Home</a></li>
+              <li><a href="graphs.html" data-icon="grid">Usage Log</a></li>
+            </ul>
+          </div>
+        </div>
+      
+    </div>
+    
   </body>
 </html>

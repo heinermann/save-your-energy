@@ -54,3 +54,32 @@
 #intro img {
   width:400px;
 }
+
+#notification-list .ui-li-icon, #promotion-page .ui-li-icon  {
+  max-height: 32px;
+  max-width: 32px;
+}
+
+#notification-list .ui-li-has-icon, #promotion-page .ui-li-has-icon {
+  padding-left:54px;
+  min-height:34px;
+}
+
+/* hack fix for listview links */
+#notification-list .ui-li-has-icon a {
+  margin-left:-44px;
+  min-height:34px;
+}
+
+/* hack fix for listview links */
+#notification-list .ui-li-has-icon a .ui-li-icon {
+  margin-left:-54px;
+}
+
+#notification-list li {
+  font-weight:100;
+}
+
+#tips li {
+  font-weight:100;
+}
