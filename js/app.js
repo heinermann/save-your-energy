@@ -55,6 +55,37 @@ $(function(){
   // begin realtime electric usage receiving
   Electric.start(5000);
   
+  
+  // fake push notifications
+  $(document).keypress(function (e) {
+     
+     var hKey = 104;
+     var jKey = 106;
+     var kKey = 107;
+     var lKey = 108;
+     
+     var leavingHome = $("#leaving-home-dialog");
+     leavingHome.popup();
+     
+     var peakHours = $("#peak-hours-dialog");
+     peakHours.popup();
+     
+     var offHours = $("#off-hours-dialog");
+     offHours.popup();
+     
+     if (e.keyCode == hKey) {
+       leavingHome.popup("open");
+     }
+     else if (e.keyCode == jKey) {
+      peakHours.popup("open");
+     }
+     else if (e.keyCode == kKey) {
+      offHours.popup("open");
+     }
+     
+  });
+  
+  
   // testing for temperature spoofing
   // TODO: remove
   /*{

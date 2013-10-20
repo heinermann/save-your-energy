@@ -14,3 +14,7 @@
   user-select: none;
 }
 
+.ui-widget-overlay {
+    opacity: 0;
+    filter: alpha(opacity=0);  /* IE8 and lower */
+}
