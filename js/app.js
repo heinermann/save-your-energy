@@ -32,4 +32,16 @@ $(function(){
     Temp.start(1000);
   }
   
+  // testing for usage spoofing
+  // TODO: remove
+  {
+    console.log(Electric.createDataset(Electric.getConf(), 10));
+    var cb = function (u) {
+      console.log("the usage is $" + u.cost/100000.0);
+    }
+    Electric.observe(cb);
+    setTimeout(function () { Electric.unobserve(cb); }, 3*1000);
+    Electric.start(1000);
+  }
+  
 });
