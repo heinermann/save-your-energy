@@ -43,12 +43,12 @@
   width:400px;
 }
 
-#notification-list .ui-li-icon  {
+#notification-list .ui-li-icon, #promotion-page .ui-li-icon  {
   max-height: 32px;
   max-width: 32px;
 }
 
-#notification-list .ui-li-has-icon {
+#notification-list .ui-li-has-icon, #promotion-page .ui-li-has-icon {
   padding-left:54px;
   min-height:34px;
 }
