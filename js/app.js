@@ -2,6 +2,7 @@
 //var vmousedown = false;
 
 $(function(){
+
   // to be used for dragging stuff during a swipe
   //$(document).on("vmousedown", function(){ if ( !vmousedown ) vmousedown = true; });
   //$(document).on("vmouseup", function(){ if ( vmousedown ) vmousedown = false; });
@@ -107,6 +108,15 @@ $(function(){
      }
      
   });
+  
+  
+  // animate intro
+  setTimeout(function () {
+    $("#intro .logo-wrap").fadeIn();
+  }, 750);
+  setTimeout(function () {
+    $("#intro").fadeOut(1000);
+  }, 3000);
   
   
   // testing for temperature spoofing

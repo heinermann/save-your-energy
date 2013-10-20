@@ -18,3 +18,27 @@
     opacity: 0;
     filter: alpha(opacity=0);  /* IE8 and lower */
 }
+
+#intro {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#333;
+  z-index:3000;
+}
+
+#intro .logo-wrap {
+  display:none;
+  background:#fff;
+  width:400px;
+  padding:10px 20px;
+  border-radius:20px;
+  box-shadow:0 0 10px #000 inset;
+  margin:150px auto 0 auto;
+}
+
+#intro img {
+  width:400px;
+}
