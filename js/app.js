@@ -20,9 +20,44 @@ $(function(){
       .animate({ height: "0", margin: "0", padding: "0"}, complete=function(){ $(this).remove() });
   });
   
+  // update usage metrics on home screen
+  {
+    // accumulate costs
+    var totalToday = 0;
+  
+    var current15 = $("#current15");
+    current15.text("awaiting data...");
+    
+    var past15 = $("#past15");
+    past15.text("awaiting data...");
+    
+    var currentTotal = $("#currentTotal");
+    currentTotal.text("awaiting data...");
+    
+    var pastTotal = $("#pastTotal");
+    // spoofed. todo: might want to base on Electric usage config.
+    pastTotal.text("$" + randomInRange(5, 15).toFixed(2));
+    
+    Electric.observe(function (u) {
+    
+      var currentCost = Electric.costToDollars(u.cost);
+      var pastCost = currentCost + randomInRange(-0.5, 0.5); // spoofed
+      var delta = currentCost - pastCost;
+      totalToday += currentCost;
+      
+      currentTotal.text("$" + totalToday.toFixed(2));
+      current15.text("$" + currentCost.toFixed(2));
+      past15.text("$" + pastCost.toFixed(2) + ", $" + delta.toFixed(2));
+      
+    });
+  }
+  
+  // begin realtime electric usage receiving
+  Electric.start(5000);
+  
   // testing for temperature spoofing
   // TODO: remove
-  {
+  /*{
     console.log(Temp.createDataset({ minTemp: -100, maxTemp: 100, maxVariance: 10 }, 10, 15));
     var cb = function (t) {
       console.log("the temp is " + t + " deg C");
@@ -31,9 +66,11 @@ $(function(){
     setTimeout(function () { Temp.unobserve(cb); }, 3*1000);
     Temp.start(1000);
   }
+  */
   
   // testing for usage spoofing
   // TODO: remove
+  /*
   {
     console.log(Electric.createDataset(Electric.getConf(), 10));
     var cb = function (u) {
@@ -43,5 +80,6 @@ $(function(){
     setTimeout(function () { Electric.unobserve(cb); }, 3*1000);
     Electric.start(1000);
   }
+  */
   
 });

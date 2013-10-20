@@ -346,6 +346,13 @@ var Electric = (function (m) {
   m.stop = function () {
     timer.stop();
   }
+  
+  /*
+   * Convert usage cost to dollars.
+   */
+  m.costToDollars = function (cost) {
+    return cost / 100000;
+  }
 
   return m;
 
