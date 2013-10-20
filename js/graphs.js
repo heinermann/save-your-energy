@@ -6,6 +6,15 @@ function get_random_number(b, t) {
   return Math.floor(Math.random() * (1 + t - b)) + b;
 }
 
+function get_y_value (obj, displayValue) {
+  if (displayValue == true) {
+    return obj.value;
+  }
+  else {
+    return obj.cost;
+  }
+}
+
 function refresh () {
   d3.selectAll("g.xaxis").data([]).exit().remove();
   d3.selectAll("g.yaxis").data([]).exit().remove();
@@ -51,9 +60,11 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
+var displayValue = true;
+
 var line = d3.svg.line()
     .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
-    .y(function(d) { return y(d.value); });
+    .y(function(d) { return y(get_y_value(d, displayValue)); });
 
 var svg = d3.select("#graph-placeholder").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -84,10 +95,23 @@ d3.json("HackWE-BigData.json", function(error, data) {
   var monthcolor = "black";
   var yearcolor = "black";
 
+
+  $('#value-radio').change('change', function(){
+    if ($(this).is(':checked')) {
+      displayValue = true;
+    }
+  });
+
+  $('#cost-radio').change('change', function(){
+    if ($(this).is(':checked')) {
+      displayValue = false;
+    }
+  });
+
   $('#day-radio').change('change', function(){
     if ($(this).is(':checked')){
       x.domain(d3.extent(block[0].IntervalReading, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(block[0].IntervalReading, function(d) { return parseInt(d.value); }));
+      y.domain(d3.extent(block[0].IntervalReading, function(d) { return parseInt(get_y_value(d, displayValue)); }));
       refresh();
 
       // Assume today is the first block
@@ -102,7 +126,7 @@ d3.json("HackWE-BigData.json", function(error, data) {
       var color2 = get_random_color();
       var random_data = block[get_random_number(0, 413)].IntervalReading;
       x.domain(d3.extent(random_data, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(random_data, function(d) { return parseInt(d.value); }));
+      y.domain(d3.extent(random_data, function(d) { return parseInt(get_y_value(d, displayValue)); }));
       svg.append("path")
         .datum(random_data)
         .attr("class", "line")
@@ -121,11 +145,11 @@ d3.json("HackWE-BigData.json", function(error, data) {
         randBlockWeek.push(block[n+k].IntervalReading[0]);
       }
       x.domain(d3.extent(blockWeek, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(blockWeek, function(d) { return parseInt(d.value); }));
+      y.domain(d3.extent(blockWeek, function(d) { return parseInt(get_y_value(d, displayValue)); }));
       refresh();
       var lineWeek = d3.svg.line()
         .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
-        .y(function(d) { return y(d.value); });
+        .y(function(d) { return y(get_y_value(d, displayValue)); });
 
       // Pick 7 days
       svg.append("path")
@@ -135,7 +159,7 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .attr("stroke", weekcolor);
 
       x.domain(d3.extent(randBlockWeek, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(randBlockWeek, function(d) { return parseInt(d.value); }));
+      y.domain(d3.extent(randBlockWeek, function(d) { return parseInt(get_y_value(d, displayValue));}));
 
       // Pick 7 days
       var color2 = get_random_color();
@@ -157,12 +181,12 @@ d3.json("HackWE-BigData.json", function(error, data) {
         randBlockMonth.push(block[n+k].IntervalReading[0]);
       }
       x.domain(d3.extent(blockMonth, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(blockMonth, function(d) { return parseInt(d.value); }));
+      y.domain(d3.extent(blockMonth, function(d) { return parseInt(get_y_value(d, displayValue)); }));
       refresh();
 
       var lineWeek = d3.svg.line()
         .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
-        .y(function(d) { return y(d.value); });
+        .y(function(d) { return y(get_y_value(d, displayValue)); });
 
       // Pick 7 days
       svg.append("path")
@@ -172,7 +196,7 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .attr("stroke", monthcolor);
 
       x.domain(d3.extent(randBlockMonth, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(randBlockMonth, function(d) { return parseInt(d.value); }));
+      y.domain(d3.extent(randBlockMonth, function(d) { return parseInt(get_y_value(d, displayValue)); }));
 
       // Pick 7 days
       var color2 = get_random_color();
@@ -194,12 +218,12 @@ d3.json("HackWE-BigData.json", function(error, data) {
         randBlockYear.push(block[n+k].IntervalReading[0]);
       }
       x.domain(d3.extent(blockYear, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(blockYear, function(d) { return parseInt(d.value); }));
+      y.domain(d3.extent(blockYear, function(d) { return parseInt(get_y_value(d, displayValue)); }));
       refresh();
 
       var lineWeek = d3.svg.line()
         .x(function(d) { return x(new Date(d.timePeriod.start * 1000)); })
-        .y(function(d) { return y(d.value); });
+        .y(function(d) { return y(get_y_value(d, displayValue)); });
 
       // Pick 7 days
       svg.append("path")
@@ -209,7 +233,7 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .attr("stroke", yearcolor);
 
       x.domain(d3.extent(randBlockYear, function(d) { return new Date(d.timePeriod.start * 1000); }));
-      y.domain(d3.extent(randBlockYear, function(d) { return parseInt(d.value); }));
+      y.domain(d3.extent(randBlockYear, function(d) { return parseInt(get_y_value(d, displayValue)); }));
 
       // Pick 7 days
       var color2 = get_random_color();
