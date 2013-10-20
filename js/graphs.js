@@ -15,6 +15,14 @@ function get_y_value (obj, displayValue) {
   }
 }
 
+function addPath (data, line, color) {
+  svg.append("path")
+    .datum(data)
+    .attr("class", "line")
+    .attr("d", line)
+    .attr("stroke", color);
+}
+
 function refresh () {
   d3.selectAll("g.xaxis").data([]).exit().remove();
   d3.selectAll("g.yaxis").data([]).exit().remove();
@@ -120,23 +128,14 @@ d3.json("HackWE-BigData.json", function(error, data) {
 
       // Assume today is the first block
       var todays_data = block[0].IntervalReading;
-      svg.append("path")
-          .datum(todays_data)
-          .attr("class", "line")
-          .attr("d", line)
-          .attr("stroke", daycolor);
+      addPath(todays_data, line, daycolor);
 
       // Add random data
       var color2 = get_random_color();
       var random_data = block[get_random_number(0, 413)].IntervalReading;
       x.domain(d3.extent(random_data, function(d) { return new Date(d.timePeriod.start * 1000); }));
       y.domain(d3.extent(random_data, function(d) { return parseInt(get_y_value(d, displayValue)); }));
-      svg.append("path")
-        .datum(random_data)
-        .attr("class", "line")
-        .attr("d", line)
-        .attr("stroke", color2);
-        
+      addPath(random_data, line, color2);
       // update legend
       colourLegend.find(".secondary .colour").css("background", color2);
     }
@@ -159,23 +158,14 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .y(function(d) { return y(get_y_value(d, displayValue)); });
 
       // Pick 7 days
-      svg.append("path")
-        .datum(blockWeek)
-        .attr("class", "line")
-        .attr("d", lineWeek)
-        .attr("stroke", weekcolor);
+      addPath(blockWeek, lineWeek, weekcolor);
 
       x.domain(d3.extent(randBlockWeek, function(d) { return new Date(d.timePeriod.start * 1000); }));
       y.domain(d3.extent(randBlockWeek, function(d) { return parseInt(get_y_value(d, displayValue));}));
 
       // Pick 7 days
       var color2 = get_random_color();
-      svg.append("path")
-        .datum(randBlockWeek)
-        .attr("class", "line")
-        .attr("d", lineWeek)
-        .attr("stroke", color2);
-      
+      addPath(randBlockWeek, lineWeek, color2);
       // update legend
       colourLegend.find(".secondary .colour").css("background", color2);
     }
@@ -199,23 +189,14 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .y(function(d) { return y(get_y_value(d, displayValue)); });
 
       // Pick 7 days
-      svg.append("path")
-        .datum(blockMonth)
-        .attr("class", "line")
-        .attr("d", lineWeek)
-        .attr("stroke", monthcolor);
+      addPath(blockMonth, lineWeek, monthcolor);
 
       x.domain(d3.extent(randBlockMonth, function(d) { return new Date(d.timePeriod.start * 1000); }));
       y.domain(d3.extent(randBlockMonth, function(d) { return parseInt(get_y_value(d, displayValue)); }));
 
       // Pick 7 days
       var color2 = get_random_color();
-      svg.append("path")
-        .datum(randBlockMonth)
-        .attr("class", "line")
-        .attr("d", lineWeek)
-        .attr("stroke", color2);
-      
+      addPath(randBlockMonth, lineWeek, color2);
       // update legend
       colourLegend.find(".secondary .colour").css("background", color2);
     }
@@ -239,52 +220,17 @@ d3.json("HackWE-BigData.json", function(error, data) {
         .y(function(d) { return y(get_y_value(d, displayValue)); });
 
       // Pick 7 days
-      svg.append("path")
-        .datum(blockYear)
-        .attr("class", "line")
-        .attr("d", lineWeek)
-        .attr("stroke", yearcolor);
+      addPath(blockYear, lineWeek, yearcolor);
 
       x.domain(d3.extent(randBlockYear, function(d) { return new Date(d.timePeriod.start * 1000); }));
       y.domain(d3.extent(randBlockYear, function(d) { return parseInt(get_y_value(d, displayValue)); }));
 
       // Pick 7 days
       var color2 = get_random_color();
-      svg.append("path")
-        .datum(randBlockYear)
-        .attr("class", "line")
-        .attr("d", lineWeek)
-        .attr("stroke", color2);
-      
+      addPath(randBlockYear, lineWeek, color2);
       // update legend
       colourLegend.find(".secondary .colour").css("background", color2);
     }
   });
-
-       /*
-    var todaysDate = new Date(this_data[0].timePeriod.start * 1000);
-    var color = get_random_color();
-    svg.append("path")
-        .datum(this_data)
-        .attr("class", "line")
-        .attr("d", line)
-        .attr("stroke", color);
-    // Add to legend
-    legend.append("rect")
-      .attr("x", width/2 - 65)
-      .attr("y", height - (k * 25) -10 )
-      .attr("width", 10)
-      .attr("height", 10)
-      .attr("fill", color);
-
-    legend.append("text")
-      .attr("x", width/2 - 50)
-      .attr("y", height - (k * 25) + 2)
-      .attr("width", 100)
-      .attr("height", 30)
-      .attr("fill", color)
-      .text(months[todaysDate.getMonth()] + " " + todaysDate.getDate() + ", " + todaysDate.getFullYear());
-  */
-  //}
 });
 
