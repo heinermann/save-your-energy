@@ -104,6 +104,13 @@ $(function(){
        offHours.popup("open");
        registerSwipeKill(elem);
      }
+     else if (e.keyCode == lKey) {
+       var r = Math.round(randomInRange(0,3));
+       if (r == 0) notificationList.prepend("<li>Temperature today is 4&deg;C. Heating recommended.</li>").listview("refresh"); 
+       else if (r == 1) notificationList.prepend("<li>Temperature today is 34&deg;C. Air conditioning recommended.</li>").listview("refresh");
+       else if (r == 2) notificationList.prepend("<li>Temperature today is 22&deg;C. No air conditioning and open windows recommended.</li>").listview("refresh");
+       else if (r == 3) notificationList.prepend("<li>Temperature today is 12&deg;C. No heating and extra clothing is recommended.</li>").listview("refresh");
+     }
      
   });
   
