@@ -53,6 +53,17 @@
   min-height:34px;
 }
 
+/* hack fix for listview links */
+#notification-list .ui-li-has-icon a {
+  margin-left:-44px;
+  min-height:34px;
+}
+
+/* hack fix for listview links */
+#notification-list .ui-li-has-icon a .ui-li-icon {
+  margin-left:-54px;
+}
+
 #notification-list li {
   font-weight:100;
 }

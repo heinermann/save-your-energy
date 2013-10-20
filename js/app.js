@@ -71,14 +71,21 @@ $(function(){
   Electric.start(5000);
   
   
-  function addNotification(icon,str,hasPopup) {
+  function addNotification(icon,str,hasPopup,link) {
     if ( typeof hasPopup == 'undefined' )
       hasPopup = false;
 
     var notificationList = $("#notification-list");
-    var elem = $("<li class='ui-li-has-icon'><img src='"
-      +icon+"' width='32' height='32' class='ui-li-icon'>"+str+"</li>")
-      .prependTo(notificationList).hide();
+    var elem;
+    if (link) {
+     elem = $("<li class='ui-li-has-icon'><a href='"+link+"'><img src='"
+      +icon+"' width='32' height='32' class='ui-li-icon'>"+str+"</a></li>");
+    }
+    else {
+      elem = $("<li class='ui-li-has-icon'><img src='"
+      +icon+"' width='32' height='32' class='ui-li-icon'>"+str+"</li>");
+    }
+    elem.prependTo(notificationList).hide();
     if ( hasPopup ) {
       $(".popupstr").html(str);
       $("#general-dialog").popup("open");
@@ -96,6 +103,8 @@ $(function(){
      var jKey = 106;
      var kKey = 107;
      var lKey = 108;
+     var pKey = 112;
+     
     /* 
      var leavingHome = $("#leaving-home-dialog");
      leavingHome.popup();
@@ -121,6 +130,9 @@ $(function(){
        else if (r == 1) addNotification("image/therm-icon.png", "Temperature today is 34&deg;C. Air conditioning recommended.");
        else if (r == 2) addNotification("image/therm-icon.png", "Temperature today is 22&deg;C. No air conditioning and open windows recommended.");
        else if (r == 3) addNotification("image/therm-icon.png", "Temperature today is 12&deg;C. No heating and extra clothing is recommended.");
+     }
+     else if (e.keyCode == pKey) {
+       addNotification("image/promo-icon.png", "New promotion from Jane's Fancy Jeans!", false, "#promotion-page");
      }
      
   });
