@@ -24,8 +24,6 @@
         <ul data-role="listview">
           <li data-role="list-divider">Usage</li>
           <li><a href="graphs.html">
-          <!--label for="date">Poop:</label>
-          <input type="date" name="date" id="date" value="" /-->
             <h4>Last 15 minutes: <span class="current15" id="current15">xx</span> </h4>
             <p>Yesterday (same time): <span class="past15" id="past15">xx</span> </p>
           </a></li>
@@ -64,8 +62,51 @@
     </div>
     
     <div id="intro">
-      <div class="logo-wrap"><img src="image/logo.png"></div>
+      <div class="logo-wrap"><img src="image/logo.png" alt=""></div>
     </div>
     
+    <div data-role="page" id="rates-page">
+      <div data-role="header" >
+        <h1>Home</h1>
+      </div>
+
+      <table style="width:100%;" class="ui-grid-c rate-chart">
+        <tr class="ui-bar-b">
+          <th>Hour</th>
+          <th>Summer Rate(May-Oct)</th>
+          <th>Winter Rate(Nov-Apr)</th>
+        </tr>
+        <tr><td>7:00 AM</td><td rowspan="4" class="peakmid">mid-peak rate 10.4&cent;/kWh</td><td rowspan="4" class="peakhigh">on-peak rate 12.4&cent;/kWh</td></tr>
+        <tr><td>8:00 AM</td></tr>
+        <tr><td>9:00 AM</td></tr>
+        <tr><td>10:00 AM</td></tr>
+        <tr><td>11:00 AM</td><td rowspan="6" class="peakhigh">on-peak rate 12.4&cent;/kWh</td><td rowspan="6" class="peakmid">mid-peak rate 10.4&cent;/kWh</td></tr>
+        <tr><td>12:00 PM</td></tr>
+        <tr><td>1:00 PM</td></tr>
+        <tr><td>2:00 PM</td></tr>
+        <tr><td>3:00 PM</td></tr>
+        <tr><td>4:00 PM</td></tr>
+        <tr><td>5:00 PM</td><td rowspan="2" class="peakmid">mid-peak rate 10.4&cent;/kWh</td><td rowspan="2" class="peakhigh">on-peak rate 12.4&cent;/kWh</td></tr>
+        <tr><td>6:00 PM</td></tr>
+        <tr><td>7:00 PM</td><td rowspan="12" class="peaklow">off-peak rate 6.7&cent;/kWh</td><td rowspan="12" class="peaklow">off-peak rate 6.7&cent;/kWh</td></tr>
+        <tr><td>8:00 PM</td></tr>
+        <tr><td>9:00 PM</td></tr>
+        <tr><td>10:00 PM</td></tr>
+        <tr><td>11:00 PM</td></tr>
+        <tr><td>midnight</td></tr>
+        <tr><td>1:00 AM</td></tr>
+        <tr><td>2:00 AM</td></tr>
+        <tr><td>3:00 AM</td></tr>
+        <tr><td>4:00 AM</td></tr>
+        <tr><td>5:00 AM</td></tr>
+        <tr><td>6:00 AM</td></tr>
+      </table>
+
+      <div class="footerwrapper">
+        <div data-role="footer">
+          <h3>Footer</h3>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -19,6 +19,18 @@
     filter: alpha(opacity=0);  /* IE8 and lower */
 }
 
+.rate-chart td {
+  text-align:center;
+  vertical-align:middle;
+}
+
+.peakhigh {
+  background-color:#FFDDDD;
+}
+.peakmid {
+  background-color:#FFFFDD;
+}
+
 #intro {
   position:absolute;
   top:0;
