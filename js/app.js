@@ -15,11 +15,11 @@ $(function(){
   }
 
   // Swipe handlers to remove entries
-  $(".swipekill").on("swiperight", function(evt){
+  $(".swipekillctrl > li").on("swiperight", function(evt){
     swipeRemove($(evt.target), 1);
   });
 
-  $(".swipekill").on("swipeleft", function(evt){
+  $(".swipekillctrl > li").on("swipeleft", function(evt){
     swipeRemove($(evt.target), -1);
   });
 
