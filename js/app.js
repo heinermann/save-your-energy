@@ -19,4 +19,17 @@ $(function(){
     targ.animate({ left: -targ.outerWidth(), opacity: 0 })
       .animate({ height: "0", margin: "0", padding: "0"}, complete=function(){ $(this).remove() });
   });
+  
+  // testing for temperature spoofing
+  // TODO: remove
+  {
+    console.log(Temp.createDataset({ minTemp: -100, maxTemp: 100, maxVariance: 10 }, 10, 15));
+    var cb = function (t) {
+      console.log("the temp is " + t + " deg C");
+    }
+    Temp.observe(cb);
+    setTimeout(function () { Temp.unobserve(cb); }, 3*1000);
+    Temp.start(1000);
+  }
+  
 });
