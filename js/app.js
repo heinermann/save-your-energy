@@ -56,6 +56,8 @@ $(function(){
   Electric.start(5000);
   
   
+  var notificationList = $("#notification-list");
+  
   // fake push notifications
   $(document).keypress(function (e) {
      
@@ -74,13 +76,16 @@ $(function(){
      offHours.popup();
      
      if (e.keyCode == hKey) {
+       notificationList.prepend("<li>Turn off unnecessary devices if you will be away from home.</li>").listview("refresh");
        leavingHome.popup("open");
      }
      else if (e.keyCode == jKey) {
-      peakHours.popup("open");
+       notificationList.prepend("<li>Peak hours begin soon at the rate of <span style=\"font-family:monospace\">$0.12/kWh</span>. Turning off unnecessary devices is advised.</li>").listview("refresh");
+       peakHours.popup("open");
      }
      else if (e.keyCode == kKey) {
-      offHours.popup("open");
+       notificationList.prepend("<li>Off hours begin soon at the rate of <span style=\"font-family:monospace\">$0.02/kWh</span>. Using necessary high power devices at this time is advised.</li>").listview("refresh");
+       offHours.popup("open");
      }
      
   });
