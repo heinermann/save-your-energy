@@ -232,25 +232,5 @@ d3.json("HackWE-BigData.json", function(error, data) {
       colourLegend.find(".secondary .colour").css("background", color2);
     }
   });
-
-       /*
-    var todaysDate = new Date(this_data[0].timePeriod.start * 1000);
-    // Add to legend
-    legend.append("rect")
-      .attr("x", width/2 - 65)
-      .attr("y", height - (k * 25) -10 )
-      .attr("width", 10)
-      .attr("height", 10)
-      .attr("fill", color);
-
-    legend.append("text")
-      .attr("x", width/2 - 50)
-      .attr("y", height - (k * 25) + 2)
-      .attr("width", 100)
-      .attr("height", 30)
-      .attr("fill", color)
-      .text(months[todaysDate.getMonth()] + " " + todaysDate.getDate() + ", " + todaysDate.getFullYear());
-  */
-  //}
 });
 
