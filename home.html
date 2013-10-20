@@ -71,9 +71,14 @@
     </div>
     
     <div data-role="page" id="rates-page">
-      <div data-role="header" >
+      <div data-role="header">
         <h1>Home</h1>
       </div>
+      
+      <ul data-role="listview">
+        <li data-role="list-divider">Usage</li>
+        <li><p style="padding-top:0.75em; font-weight:700; font-size:12pt; margin-bottom:0;">Current rate: <span style="font-family:monospace;" id="current-rate">awaiting data...</span></p></li>
+      </ul>
 
       <table style="width:100%;" class="ui-grid-c rate-chart">
         <tr class="ui-bar-b">

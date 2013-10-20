@@ -53,6 +53,8 @@ $(function(){
     // spoofed. todo: might want to base on Electric usage config.
     pastTotal.text("$" + randomInRange(5, 15).toFixed(2));
     
+    var currentRate = $("#current-rate");
+    
     Electric.observe(function (u) {
     
       var currentCost = Electric.costToDollars(u.cost);
@@ -63,6 +65,9 @@ $(function(){
       currentTotal.text(formatDollars(totalToday));
       current15.text(formatDollars(currentCost));
       past15.text(formatDollars(pastCost) + ", " + formatDollars(delta, true));
+      
+      // update current rate on rates page
+      currentRate.text(formatDollars(u.rate/25.0) + " / kWh");
       
     });
   }
