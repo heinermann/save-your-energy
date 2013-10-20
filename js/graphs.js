@@ -88,6 +88,10 @@ var legend = svg.append("g")
 
 // Reading the json stuff
 d3.json("HackWE-BigData.json", function(error, data) {
+
+  // find the colour legend element
+  var colourLegend = $("#graph-legend");
+
   var block = data.feed.entry[2].content.IntervalBlock;
   // Block is the list of 14 days with 96 points each
   // data <- block[k].IntervalReading;
@@ -132,6 +136,8 @@ d3.json("HackWE-BigData.json", function(error, data) {
       x.domain(d3.extent(random_data, function(d) { return new Date(d.timePeriod.start * 1000); }));
       y.domain(d3.extent(random_data, function(d) { return parseInt(get_y_value(d, displayValue)); }));
       addPath(random_data, line, color2);
+      // update legend
+      colourLegend.find(".secondary .colour").css("background", color2);
     }
   });
 
@@ -160,6 +166,8 @@ d3.json("HackWE-BigData.json", function(error, data) {
       // Pick 7 days
       var color2 = get_random_color();
       addPath(randBlockWeek, lineWeek, color2);
+      // update legend
+      colourLegend.find(".secondary .colour").css("background", color2);
     }
   });
 
@@ -189,6 +197,8 @@ d3.json("HackWE-BigData.json", function(error, data) {
       // Pick 7 days
       var color2 = get_random_color();
       addPath(randBlockMonth, lineWeek, color2);
+      // update legend
+      colourLegend.find(".secondary .colour").css("background", color2);
     }
   });
 
@@ -218,6 +228,8 @@ d3.json("HackWE-BigData.json", function(error, data) {
       // Pick 7 days
       var color2 = get_random_color();
       addPath(randBlockYear, lineWeek, color2);
+      // update legend
+      colourLegend.find(".secondary .colour").css("background", color2);
     }
   });
 

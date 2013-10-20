@@ -22,6 +22,10 @@
   <div id="wrapper">
     <div data-role="page">
 
+      <div data-role="header">
+        <h1>Usage Log</h1>
+      </div>
+    
       <div data-role="content">
         <div data-role="fieldcontain">
           <fieldset id="time-intervals" data-role="controlgroup" data-type="horizontal">
@@ -37,8 +41,16 @@
           </fieldset>
         </div>
 
-        <div id="graph-placeholder" style="width:600px;height:300px">
+        <div id="graph-placeholder">
           <script src="js/graphs.js"></script>
+        </div>
+        
+        <div id="graph-legend">
+          <ul>
+            <li class="primary"><div class="colour"></div>Current</li>
+            <li class="secondary"><div class="colour"></div>Past</li>
+          </ul>
+          <div class="clear:both"></div>
         </div>
 
         <div data-role="fieldcontain">
@@ -53,6 +65,18 @@
 
       </div><!-- /content -->
 
+      <div class="footerwrapper">
+        <div data-role="footer">
+          <div data-role="navbar">
+            <ul>
+              <li><a href="home.html#rates-page" data-icon="grid">Rates Schedule</a></li>
+              <li><a href="home.html#promotion-page" data-icon="star">Promotions</a></li>
+              <li><a href="home.html#home-page" data-icon="home">Home</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
     </div><!-- /page -->
   </div>
 </body>
