@@ -27,41 +27,49 @@
       </div>
     
       <div data-role="content">
-        <div data-role="fieldcontain">
-          <fieldset id="time-intervals" data-role="controlgroup" data-type="horizontal">
-            <legend>Time Intervals:</legend>
-            <input type="radio" name="button-radio" id="day-radio" checked="checked"/>
-            <label for="day-radio">Day</label>
-            <input type="radio" name="button-radio" id="week-radio"/>
-            <label for="week-radio">Week</label>
-            <input type="radio" name="button-radio" id="month-radio"/>
-            <label for="month-radio">Month</label>
-            <input type="radio" name="button-radio" id="year-radio"/>
-            <label for="year-radio">Year</label>
-          </fieldset>
-        </div>
+      
+        
+        
 
         <div id="graph-placeholder">
           <script src="js/graphs.js"></script>
         </div>
         
-        <div id="graph-legend">
+        <div id="graph-legend" height="20px">
           <ul>
             <li class="primary"><div class="colour"></div>Current</li>
             <li class="secondary"><div class="colour"></div>Past</li>
           </ul>
-          <div class="clear:both"></div>
+          <div style="clear:both;"></div>
         </div>
-
-        <div data-role="fieldcontain">
-          <fieldset id="value-selector" data-role="controlgroup" data-type="horizontal">
-            <legend>Y value selector:</legend>
-            <input type="radio" name="value-selector-radio" id="value-radio" checked="checked"/>
-            <label for="value-radio">Value</label>
-            <input type="radio" name="value-selector-radio" id="cost-radio"/>
-            <label for="cost-radio">Cost</label>
-          </fieldset>
-        </div>
+        
+        <ul data-role="listview" style="margin-top:15px">
+          <li data-role="list-divider">Graph View</li>
+          <li>
+            <div data-role="fieldcontain">
+              <fieldset id="time-intervals" data-role="controlgroup" data-type="horizontal">
+                <legend>Time Interval</legend>
+                <input type="radio" name="button-radio" id="day-radio" checked="checked"/>
+                <label for="day-radio">Day</label>
+                <input type="radio" name="button-radio" id="week-radio"/>
+                <label for="week-radio">Week</label>
+                <input type="radio" name="button-radio" id="month-radio"/>
+                <label for="month-radio">Month</label>
+                <input type="radio" name="button-radio" id="year-radio"/>
+                <label for="year-radio">Year</label>
+              </fieldset>
+            </div>
+            <div data-role="fieldcontain">
+              <fieldset id="value-selector" data-role="controlgroup" data-type="horizontal">
+                <legend>Y-Axis</legend>
+                <input type="radio" name="value-selector-radio" id="value-radio" checked="checked"/>
+                <label for="value-radio">Value</label>
+                <input type="radio" name="value-selector-radio" id="cost-radio"/>
+                <label for="cost-radio">Cost</label>
+              </fieldset>
+            </div>
+          </li>
+        </ul>
 
       </div><!-- /content -->
 

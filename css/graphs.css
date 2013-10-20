@@ -18,12 +18,15 @@ body {
   stroke-width: 1.5px;
 }
 
+#graph-placeholder {
+  margin-top:8px;
+}
+
 #graph-legend {
 }
 
 #graph-legend ul {
   list-style:none;
-  float:right;
   padding-right:10px;
 }
 
@@ -40,6 +43,6 @@ body {
 }
 
 #graph-legend li {
-  float:left;
+  float:right;
   margin-left:10px;
 }
