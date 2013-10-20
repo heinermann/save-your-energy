@@ -75,13 +75,15 @@ $(function(){
       hasPopup = false;
 
     var notificationList = $("#notification-list");
-    var elem = notificationList.prepend("<li>"+str+"</li>").listview("refresh");
+    var elem = $("<li>"+str+"</li>").prependTo(notificationList).hide();
     if ( hasPopup ) {
       $(".popupstr").html(str);
       $("#general-dialog").popup("open");
     }
 
     registerSwipeKill(elem);
+    notificationList.listview("refresh");
+    elem.slideDown();
   }
   
   // fake push notifications
