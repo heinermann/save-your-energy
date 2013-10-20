@@ -30,6 +30,9 @@
 .peakmid {
   background-color:#FFFFDD;
 }
+.peaklow {
+  background-color:#DDFFDD;
+}
 
 #intro {
   position:absolute;
