@@ -140,6 +140,9 @@ d3.json("HackWE-BigData.json", function(error, data) {
       colourLegend.find(".secondary .colour").css("background", color2);
     }
   });
+  
+  // trigger day graph
+  $('#day-radio').trigger('change');
 
   $('#week-radio').change('change', function(){
     if ($(this).is(':checked')){
